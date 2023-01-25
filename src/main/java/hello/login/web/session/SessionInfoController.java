@@ -23,6 +23,7 @@ public class SessionInfoController {
                 .forEachRemaining(name -> log.info("session name={}, value={}", name, session.getAttribute(name)));
 
         log.info("sessionId={}", session.getId());
+        // session.setMaxInactiveInterval(1800); 로 세션 만료 시간 설정 가능
         log.info("getMaxInactiveInterval={}", session.getMaxInactiveInterval());
         // 세션이 생성된 시간
         log.info("creationTime={}", new Date(session.getCreationTime()));

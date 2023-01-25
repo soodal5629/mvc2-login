@@ -64,7 +64,7 @@ public class HomeController {
     //@GetMapping("/")
     // 로그인 됐을 때도 처리해주는 메소드 - 로그인 여부에 따라 보여주는 화면이 다름
     public String homeLoginV3(HttpServletRequest request, Model model) {
-        // 화면에 처음 진입한 사람들한테도 세션이 생성되면 안되기 떄문에 false
+        // 화면에 처음 진입한 사람들한테도 세션이 생성되면 안되기 때문에 false
         HttpSession session = request.getSession(false);
         if(session == null) {
             return "home";
