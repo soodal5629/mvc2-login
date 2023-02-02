@@ -11,13 +11,15 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
     // 로그인 체크하니까 preHandle(컨트롤러 호출전)만 있어도 됨
+    // 필터는 try, catch, finally 등 모든 단계(과정)를 신경써야 하는데
+    // 이에 반해 인터셉터는 필요한 단계의 메소드만 오버라이드하여 구현 가능
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         String requestURI = request.getRequestURI();
         log.info("인증 체크 인터셉터 실행 {}", requestURI);
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         if(session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
             log.info("미인증 사용자 요청");
             // 로그인으로 리다이렉트
